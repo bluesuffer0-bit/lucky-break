@@ -1,0 +1,6 @@
+{
+  "name": "Lucky Break",
+  "description": "A 3D voxel sandbox adventure where drops are randomized and crafting is a slot machine. Mine voxels, trigger lucky drops, fight creatures, and challenge Harold the Flying Pig!",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
