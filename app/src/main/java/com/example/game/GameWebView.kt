@@ -3,6 +3,7 @@ package com.example.game
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.ConsoleMessage
@@ -61,6 +62,10 @@ fun createConfiguredWebView(context: Context, bridge: GameBridge): WebView {
             domStorageEnabled = true
             databaseEnabled = true
             allowFileAccess = true
+            @Suppress("DEPRECATION")
+            allowFileAccessFromFileURLs = true
+            @Suppress("DEPRECATION")
+            allowUniversalAccessFromFileURLs = true
             mediaPlaybackRequiresUserGesture = false
             useWideViewPort = true
             loadWithOverviewMode = true
@@ -74,7 +79,9 @@ fun createConfiguredWebView(context: Context, bridge: GameBridge): WebView {
 
         webChromeClient = object : WebChromeClient() {
             override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
-                // Allows debugging console logs if needed
+                consoleMessage?.let {
+                    Log.d("LuckyBreakGame", "[JS ${it.messageLevel()}] ${it.message()} (${it.sourceId()}:${it.lineNumber()})")
+                }
                 return super.onConsoleMessage(consoleMessage)
             }
         }
